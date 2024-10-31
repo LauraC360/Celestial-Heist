@@ -1,4 +1,4 @@
-# IRM_PROJECT_2024
+# Celestial Heist
 
 State of the art Document Link: https://docs.google.com/document/d/1UcxKw0ZQhtFrm6G72I5pamTaTXNyD2TkA44N2hv6_o0/edit?usp=sharing
 
