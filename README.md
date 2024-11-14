@@ -13,5 +13,12 @@ Moodboard: https://www.figma.com/design/04AjJ0kReUXYJ8Z6Sq88u5/Figma-basics?node
 ### Design - Spaceship Cockpit1, Game Mode Screen
 ![{DAE62ACA-14B9-4384-919A-A4D0197EE075}](https://github.com/user-attachments/assets/5948780f-88d6-433a-bd81-7a0abe4a3650)
 
-### Modele Blender 3D
+![{61CBE173-9B62-4796-BBB8-835EFEE60040}](https://github.com/user-attachments/assets/15fea617-ae11-4300-969f-20896836fe1f)
+
+
+### Modelare Blender 3D
+
+![{4A330DCC-0114-407E-AD13-37E698316049}](https://github.com/user-attachments/assets/06986bab-fbed-4e7d-894f-7d4d44d02348)
+
+![Uploading {EBB44658-6CE8-4FD2-A428-AFC3A11C679E}.png…]()
 
