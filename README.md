@@ -20,5 +20,6 @@ Moodboard: https://www.figma.com/design/04AjJ0kReUXYJ8Z6Sq88u5/Figma-basics?node
 
 ![{4A330DCC-0114-407E-AD13-37E698316049}](https://github.com/user-attachments/assets/06986bab-fbed-4e7d-894f-7d4d44d02348)
 
-![Uploading {EBB44658-6CE8-4FD2-A428-AFC3A11C679E}.png…]()
+![{5A0FB104-7EA0-4711-8E24-301C8F08F03C}](https://github.com/user-attachments/assets/fbdfcb4b-0020-420d-b226-ee7f33391111)
+
 
