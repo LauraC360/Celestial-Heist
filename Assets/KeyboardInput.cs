@@ -25,7 +25,7 @@ public class KeyboardInput : InputManager
 
     public override float Pitch()
     {
-        return (Input.GetKey(pitchDown) ? -1 : 0) + (Input.GetKey(pitchUp) ? 1 : 0);
+        return (Input.GetKey(pitchDown) ? 1 : 0) + (Input.GetKey(pitchUp) ? -1 : 0);
     }
 
     public override float Thrust()

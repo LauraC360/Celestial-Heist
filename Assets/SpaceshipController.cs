@@ -17,12 +17,12 @@ public class SpaceshipController : MonoBehaviour
 
     private void Update()
     {
-        _rigidbody.AddForce(Vector3.right * (inputManager.Thrust() * thrustMultiplier), ForceMode.Acceleration);
+        _rigidbody.AddForce(transform.rotation * Vector3.forward * (inputManager.Thrust() * thrustMultiplier), ForceMode.Acceleration);
         if(_rigidbody.velocity.magnitude > 0)
-            _rigidbody.AddForce(-_rigidbody.velocity.normalized * inputManager.Airbrake() * brakeMultiplier, ForceMode.Acceleration);
+            _rigidbody.AddForce(-_rigidbody.velocity.normalized * (inputManager.Airbrake() * brakeMultiplier), ForceMode.Acceleration);
         
-        _rigidbody.AddTorque(Vector3.right * inputManager.Roll() * rollMultiplier, ForceMode.Acceleration);
-        _rigidbody.AddTorque(Vector3.up * inputManager.Yaw() * rollMultiplier, ForceMode.Acceleration);
-        _rigidbody.AddTorque(Vector3.forward * inputManager.Pitch() * rollMultiplier, ForceMode.Acceleration);
+        _rigidbody.AddTorque(transform.rotation * Vector3.right * (inputManager.Pitch() * rollMultiplier), ForceMode.Acceleration);
+        _rigidbody.AddTorque(transform.rotation * Vector3.up * (inputManager.Yaw() * rollMultiplier), ForceMode.Acceleration);
+        _rigidbody.AddTorque(transform.rotation * Vector3.forward * (inputManager.Roll() * rollMultiplier), ForceMode.Acceleration);
     }
 }
