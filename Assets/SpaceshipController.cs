@@ -21,8 +21,8 @@ public class SpaceshipController : MonoBehaviour
         if(_rigidbody.velocity.magnitude > 0)
             _rigidbody.AddForce(-_rigidbody.velocity.normalized * (inputManager.Airbrake() * brakeMultiplier), ForceMode.Acceleration);
         
-        _rigidbody.AddTorque(transform.rotation * Vector3.right * (inputManager.Pitch() * rollMultiplier), ForceMode.Acceleration);
-        _rigidbody.AddTorque(transform.rotation * Vector3.up * (inputManager.Yaw() * rollMultiplier), ForceMode.Acceleration);
-        _rigidbody.AddTorque(transform.rotation * Vector3.forward * (inputManager.Roll() * rollMultiplier), ForceMode.Acceleration);
+        _rigidbody.AddTorque(transform.rotation * Vector3.right * _rigidbody.velocity.magnitude * (inputManager.Pitch() * rollMultiplier), ForceMode.Acceleration);
+        _rigidbody.AddTorque(transform.rotation * Vector3.up * _rigidbody.velocity.magnitude * (inputManager.Yaw() * rollMultiplier), ForceMode.Acceleration);
+        _rigidbody.AddTorque(transform.rotation * Vector3.forward * _rigidbody.velocity.magnitude * (inputManager.Roll() * rollMultiplier), ForceMode.Acceleration);
     }
 }
