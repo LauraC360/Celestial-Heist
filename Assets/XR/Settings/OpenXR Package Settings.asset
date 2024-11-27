@@ -212,7 +212,6 @@ MonoBehaviour:
   - {fileID: 108638755138804064}
   - {fileID: -4502838717549576635}
   - {fileID: 4679125950585063182}
-  - {fileID: 5449148628523443222}
   - {fileID: -3607060155868450878}
   - {fileID: -8478022308438893412}
   m_renderMode: 1
@@ -363,7 +362,6 @@ MonoBehaviour:
   - {fileID: 2783161125240171462}
   - {fileID: 6174445855073446828}
   - {fileID: 4559748360266164517}
-  - {fileID: -1933447200929670217}
   - {fileID: -4361518611110318777}
   m_renderMode: 1
   m_autoColorSubmissionMode: 1
@@ -385,6 +383,7 @@ MonoBehaviour:
   m_Name: HandTrackingFeature Android
   m_EditorClassIdentifier: 
   m_enabled: 1
+  <failedInitialization>k__BackingField: 0
   nameUi: Ultraleap Hand Tracking
   version: 1.0.0
   featureIdInternal: com.ultraleap.tracking.openxr.feature.handtracking
@@ -395,6 +394,10 @@ MonoBehaviour:
   required: 0
   metaPermissions: 1
   metaHighFrequency: 1
+  _supportsHandTracking: 0
+  _isUltraleapTracking: 0
+  _supportsHandTrackingHints: 0
+  <JointSet>k__BackingField: 0
 --- !u!114 &-1408382339477892279
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -741,6 +744,7 @@ MonoBehaviour:
   m_Name: HandTrackingFeature Standalone
   m_EditorClassIdentifier: 
   m_enabled: 1
+  <failedInitialization>k__BackingField: 0
   nameUi: Ultraleap Hand Tracking
   version: 1.0.0
   featureIdInternal: com.ultraleap.tracking.openxr.feature.handtracking
@@ -751,6 +755,10 @@ MonoBehaviour:
   required: 0
   metaPermissions: 1
   metaHighFrequency: 1
+  _supportsHandTracking: 1
+  _isUltraleapTracking: 1
+  _supportsHandTrackingHints: 1
+  <JointSet>k__BackingField: 1000149000
 --- !u!114 &5489186533088324761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -844,7 +852,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5019471fb2174e5c852ecd4047163007, type: 3}
   m_Name: HandInteractionProfile Standalone
   m_EditorClassIdentifier: 
-  m_enabled: 1
+  m_enabled: 0
   nameUi: Hand Interaction Profile
   version: 0.0.1
   featureIdInternal: com.unity.openxr.feature.input.handinteraction
