@@ -14,4 +14,4 @@ https://docs.google.com/document/d/11vXJyhhCPkRrYsYOrd1YBse0PN7Dzwt9ZpcO6hwih5Q/
   Planet generation in Unity ✅
   
   
-  Video: 
+  Video: https://youtu.be/J10awUX1HgQ
