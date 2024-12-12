@@ -8,7 +8,7 @@ public class Radar : MonoBehaviour
     [SerializeField] private GameObject parent;
 
     public List<EnemySpaceship> spaceships = new List<EnemySpaceship>();
-    
+
     private void OnTriggerEnter(Collider other)
     {
         if(other.attachedRigidbody == null)
