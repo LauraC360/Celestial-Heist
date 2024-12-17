@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Planet : MonoBehaviour {
 
+    [HideInInspector]
+    public Vector3 origin;
+
     [Range(2,256)]
     public int resolution = 10;
     public bool autoUpdate = true;
@@ -24,9 +27,8 @@ public class Planet : MonoBehaviour {
     [SerializeField, HideInInspector]
     MeshFilter[] meshFilters;
     TerrainFace[] terrainFaces;
-     
 
-	void Initialize()
+    void Initialize()
     {
         shapeGenerator.UpdateSettings(shapeSettings);
         colourGenerator.UpdateSettings(colourSettings);
@@ -44,8 +46,8 @@ public class Planet : MonoBehaviour {
             if (meshFilters[i] == null)
             {
                 GameObject meshObj = new GameObject("mesh");
-                meshObj.transform.parent = transform;
-
+                meshObj.transform.SetParent(transform);
+                meshObj.transform.localPosition = origin; // Set the local position relative to the origin
                 meshObj.AddComponent<MeshRenderer>();
                 meshFilters[i] = meshObj.AddComponent<MeshFilter>();
                 meshFilters[i].sharedMesh = new Mesh();

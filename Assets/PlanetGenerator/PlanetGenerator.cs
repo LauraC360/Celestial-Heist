@@ -14,20 +14,24 @@ public class PlanetGenerator : MonoBehaviour
 
     void Start()
     {
-        generateObject();
-        generateObject();
-        generateObject();
+
+        generateObject(new Vector3(Random.Range(0, 200), Random.Range(0, 200), Random.Range(0, 200)));
+        generateObject(new Vector3(Random.Range(0, 200), Random.Range(0, 200), Random.Range(0, 200)));
+        generateObject(new Vector3(Random.Range(0, 200), Random.Range(0, 200), Random.Range(0, 200)));
     }
 
-    void generateObject()
+    void generateObject(Vector3 position)
     {
-
         currentPlanet = new GameObject();
+        currentPlanet.transform.position = position;
+        Debug.Log($"Planet created at position: {position}");
+
         Planet planetScript = currentPlanet.AddComponent<Planet>();
         planetScript.resolution = Random.Range(50, 151);
+        planetScript.origin = position;
 
         ShapeSettings shapeSettings = ScriptableObject.CreateInstance<ShapeSettings>();
-        shapeSettings.planetRadius = Random.Range(3f, 10f); // Set a random planet radius
+        shapeSettings.planetRadius = Random.Range(15f, 45f); // Set a random planet radius
         shapeSettings.noiseLayers = GenerateRandomNoiseLayers(); // Generate random noise layers
         planetScript.shapeSettings = shapeSettings;
 
@@ -37,6 +41,8 @@ public class PlanetGenerator : MonoBehaviour
         planetScript.colourSettings = colourSettings;
 
         planetScript.GeneratePlanet();
+
+        Debug.Log($"Planet position after generation: {currentPlanet.transform.position}");
     }
 
     private ShapeSettings.NoiseLayer[] GenerateRandomNoiseLayers()
