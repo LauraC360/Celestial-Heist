@@ -10,13 +10,15 @@ public class TerrainFace {
     Vector3 localUp;
     Vector3 axisA;
     Vector3 axisB;
+    GameObject meshObject;
 
-    public TerrainFace(ShapeGenerator shapeGenerator, Mesh mesh, int resolution, Vector3 localUp)
+    public TerrainFace(ShapeGenerator shapeGenerator, Mesh mesh, int resolution, Vector3 localUp, GameObject meshObject)
     {
         this.shapeGenerator = shapeGenerator;
         this.mesh = mesh;
         this.resolution = resolution;
         this.localUp = localUp;
+        this.meshObject = meshObject;
 
         axisA = new Vector3(localUp.y, localUp.z, localUp.x);
         axisB = Vector3.Cross(localUp, axisA);
@@ -55,5 +57,14 @@ public class TerrainFace {
         mesh.vertices = vertices;
         mesh.triangles = triangles;
         mesh.RecalculateNormals();
+
+        // Add a MeshCollider to the GameObject and assign the mesh
+        MeshCollider meshCollider = meshObject.GetComponent<MeshCollider>();
+        if (meshCollider == null)
+        {
+            meshCollider = meshObject.AddComponent<MeshCollider>();
+        }
+        meshCollider.sharedMesh = mesh;
+        meshCollider.convex = false; // Ensure convex is false for accurate terrain collision
     }
 }

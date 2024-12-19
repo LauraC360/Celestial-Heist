@@ -252,6 +252,56 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &41229174
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 41229161}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 1
+--- !u!136 &41229175
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 41229161}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &88374866
 GameObject:
   m_ObjectHideFlags: 0
@@ -6444,6 +6494,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: XR Device Simulator
       objectReference: {fileID: 0}
+    - target: {fileID: 6598815579406187037, guid: 18ddb545287c546e19cc77dc9fbb2189,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7747,6 +7802,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Radar
       objectReference: {fileID: 0}
+    - target: {fileID: 6461493198511253263, guid: f2ff93a79592aed40a7176926bbf48e1,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 6668503053697183269, guid: f2ff93a79592aed40a7176926bbf48e1,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -7840,7 +7900,7 @@ PrefabInstance:
     - target: {fileID: 8863390231810419545, guid: f2ff93a79592aed40a7176926bbf48e1,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.441
+      value: 2.68
       objectReference: {fileID: 0}
     - target: {fileID: 8863390231810419545, guid: f2ff93a79592aed40a7176926bbf48e1,
         type: 3}
@@ -7883,6 +7943,14 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 41229167}
+    - targetCorrespondingSourceObject: {fileID: 6461493198511253263, guid: f2ff93a79592aed40a7176926bbf48e1,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 41229174}
+    - targetCorrespondingSourceObject: {fileID: 6461493198511253263, guid: f2ff93a79592aed40a7176926bbf48e1,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 41229175}
   m_SourcePrefab: {fileID: 100100000, guid: f2ff93a79592aed40a7176926bbf48e1, type: 3}
 --- !u!4 &9197235746560607220 stripped
 Transform:
