@@ -1,5 +1,4 @@
 
-https://github.com/user-attachments/assets/3afdcf34-8bbe-4917-ac56-9267eeff8c7a
 #### State of the art (Tema 4) : 
 https://docs.google.com/document/d/1UcxKw0ZQhtFrm6G72I5pamTaTXNyD2TkA44N2hv6_o0/edit?usp=sharing
 
