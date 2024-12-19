@@ -30,7 +30,8 @@ https://docs.google.com/document/d/11vXJyhhCPkRrYsYOrd1YBse0PN7Dzwt9ZpcO6hwih5Q/
   Player Controls & Gravitation Base ✅
   Planet fix and Planet Gravitation Base ✅
 
-  Video:
+  ![ezgif-3-ee42c8736f](https://github.com/user-attachments/assets/003c4d83-d4e4-4237-a81b-386d7c8c36d3)
+
 
 
   
