@@ -1,3 +1,5 @@
+
+https://github.com/user-attachments/assets/3afdcf34-8bbe-4917-ac56-9267eeff8c7a
 #### State of the art (Tema 4) : 
 https://docs.google.com/document/d/1UcxKw0ZQhtFrm6G72I5pamTaTXNyD2TkA44N2hv6_o0/edit?usp=sharing
 
@@ -23,10 +25,13 @@ https://docs.google.com/document/d/11vXJyhhCPkRrYsYOrd1YBse0PN7Dzwt9ZpcO6hwih5Q/
 
 ![ezyZip2-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/95042ec4-140f-4ac6-8bca-de4adc956537)
 
-
 #### Week number: 12
   Progress:
-  Player Controls & Gravitation Base
-  Planet fix and Planet Gravitation Base
+  Player Controls & Gravitation Base ✅
+  Planet fix and Planet Gravitation Base ✅
 
   Video:
+  Uploading 2024-12-19 10-49-40.mp4…
+
+
+  
