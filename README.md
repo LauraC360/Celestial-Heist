@@ -31,7 +31,6 @@ https://docs.google.com/document/d/11vXJyhhCPkRrYsYOrd1YBse0PN7Dzwt9ZpcO6hwih5Q/
   Planet fix and Planet Gravitation Base ✅
 
   Video:
-  Uploading 2024-12-19 10-49-40.mp4…
 
 
   
