@@ -41,6 +41,6 @@ https://docs.google.com/document/d/11vXJyhhCPkRrYsYOrd1YBse0PN7Dzwt9ZpcO6hwih5Q/
   
 #### Week number: 13
   Progress:
-  Racing Module
+  Racing Module - checkpoints, laps, finish line
 
 
