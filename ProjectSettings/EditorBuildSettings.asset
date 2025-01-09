@@ -8,6 +8,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/Racing.unity
+    guid: 1489dfb1b4bd8fa419a447b1a17728fd
   m_configObjects:
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 29391b373a8d4f046b0f4b0bf05fa0aa,
       type: 2}
