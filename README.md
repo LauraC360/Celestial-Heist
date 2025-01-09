@@ -34,5 +34,7 @@ https://docs.google.com/document/d/11vXJyhhCPkRrYsYOrd1YBse0PN7Dzwt9ZpcO6hwih5Q/
 
   ![ezgif-3-820e401efb](https://github.com/user-attachments/assets/b84bffb9-1044-4274-84e8-370fefb3ab74)
 
-
-  
+#### Week number: 13
+  Progress:
+  Racing Module: Checkpoints, Laps, Finish Line ✅
+  (code updates on branch RacingModule)
