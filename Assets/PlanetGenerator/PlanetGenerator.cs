@@ -14,7 +14,7 @@ public class PlanetGenerator : MonoBehaviour
 
     void Start()
     {
-
+        generateObject(new Vector3(0,-100,0));
         generateObject(new Vector3(Random.Range(0, 200), Random.Range(0, 200), Random.Range(0, 200)));
         generateObject(new Vector3(Random.Range(0, 200), Random.Range(0, 200), Random.Range(0, 200)));
         generateObject(new Vector3(Random.Range(0, 200), Random.Range(0, 200), Random.Range(0, 200)));
