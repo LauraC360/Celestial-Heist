@@ -1,11 +1,16 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class PlanetGenerator : MonoBehaviour
 {
     public Shader litShaderGraphics;
     private GameObject currentPlanet;
+
+    [HideInInspector]
+    public Queue<Tuple<GameObject, float>> planetQueue = new Queue<Tuple<GameObject, float>>();
 
     private static float map(float value, float fromLow, float fromHigh, float toLow, float toHigh) 
     {
@@ -14,17 +19,19 @@ public class PlanetGenerator : MonoBehaviour
 
     void Start()
     {
-
-        generateObject(new Vector3(Random.Range(0, 200), Random.Range(0, 200), Random.Range(0, 200)));
-        generateObject(new Vector3(Random.Range(0, 200), Random.Range(0, 200), Random.Range(0, 200)));
-        generateObject(new Vector3(Random.Range(0, 200), Random.Range(0, 200), Random.Range(0, 200)));
+        generateObject(new Vector3(0, -100, 60), 0);
+        generateObject(new Vector3(Random.Range(0, 200), Random.Range(0, 200), Random.Range(0, 200)), 1);
+        generateObject(new Vector3(Random.Range(0, 200), Random.Range(0, 200), Random.Range(0, 200)), 2);
+        generateObject(new Vector3(Random.Range(0, 200), Random.Range(0, 200), Random.Range(0, 200)), 3);
     }
 
-    void generateObject(Vector3 position)
+    void generateObject(Vector3 position, int planet_id)
     {
         currentPlanet = new GameObject();
         currentPlanet.transform.position = position;
-        Debug.Log($"Planet created at position: {position}");
+        // Debug.Log($"Planet created at position: {position}");
+
+        FauxGravityAttractor attractor = currentPlanet.AddComponent<FauxGravityAttractor>();
 
         Planet planetScript = currentPlanet.AddComponent<Planet>();
         planetScript.resolution = Random.Range(50, 151);
@@ -40,9 +47,10 @@ public class PlanetGenerator : MonoBehaviour
         colourSettings.gradient = generateRandomGradient(); // Generate a random gradient
         planetScript.colourSettings = colourSettings;
 
-        planetScript.GeneratePlanet();
+        planetScript.GeneratePlanet(planet_id);
 
-        Debug.Log($"Planet position after generation: {currentPlanet.transform.position}");
+        planetQueue.Enqueue(new Tuple<GameObject, float>(currentPlanet, shapeSettings.planetRadius));
+        // Debug.Log($"Planet position after generation: {currentPlanet.transform.position}");
     }
 
     private ShapeSettings.NoiseLayer[] GenerateRandomNoiseLayers()

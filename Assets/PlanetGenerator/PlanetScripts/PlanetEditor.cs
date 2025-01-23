@@ -17,13 +17,13 @@ public class PlanetEditor : Editor {
             base.OnInspectorGUI();
             if (check.changed)
             {
-                planet.GeneratePlanet();
+                planet.GeneratePlanet(-1);
             }
         }
 
         if (GUILayout.Button("Generate Planet"))
         {
-            planet.GeneratePlanet();
+            planet.GeneratePlanet(-1);
         }
 
         DrawSettingsEditor(planet.shapeSettings, planet.OnShapeSettingsUpdated, ref planet.shapeSettingsFoldout, ref shapeEditor);
