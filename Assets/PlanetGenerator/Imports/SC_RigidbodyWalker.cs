@@ -1,23 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(SphereCollider))]
 
 public class SC_RigidbodyWalker : MonoBehaviour
 {
-    public float speed = 5.0f;
-    public bool canJump = true;
-    public float jumpHeight = 2.0f;
+    float speed = 5.0f;
+    bool canJump = true;
+    float jumpHeight = 1.50f;
     public Camera playerCamera;
-    public float lookSpeed = 2.0f;
-    public float lookXLimit = 60.0f;
+    float lookSpeed = 2.0f;
+    float lookXLimit = 60.0f;
 
     bool grounded = false;
     Rigidbody r;
     Vector2 rotation = Vector2.zero;
     float maxVelocityChange = 10.0f;
+
+    [SerializeField]
+    InputActionProperty jumpAction;
 
     void Awake()
     {
@@ -49,22 +53,22 @@ public class SC_RigidbodyWalker : MonoBehaviour
             // Calculate how fast we should be moving
             Vector3 forwardDir = Vector3.Cross(transform.up, -playerCamera.transform.right).normalized;
             Vector3 rightDir = Vector3.Cross(transform.up, playerCamera.transform.forward).normalized;
-            Vector3 targetVelocity = (forwardDir * Input.GetAxis("Vertical") + rightDir * Input.GetAxis("Horizontal")) * speed;
+            Vector3 targetVelocity = (forwardDir * Input.GetAxis("Vertical") + rightDir * Input.GetAxis("Horizontal")) * (speed / 4); // Halve the speed
 
             Vector3 velocity = transform.InverseTransformDirection(r.velocity);
             velocity.y = 0;
             velocity = transform.TransformDirection(velocity);
             Vector3 velocityChange = transform.InverseTransformDirection(targetVelocity - velocity);
-            velocityChange.x = Mathf.Clamp(velocityChange.x, -maxVelocityChange, maxVelocityChange);
-            velocityChange.z = Mathf.Clamp(velocityChange.z, -maxVelocityChange, maxVelocityChange);
+            velocityChange.x = Mathf.Clamp(velocityChange.x, -maxVelocityChange / 4, maxVelocityChange / 4); // Halve the max velocity change
+            velocityChange.z = Mathf.Clamp(velocityChange.z, -maxVelocityChange / 4, maxVelocityChange / 4); // Halve the max velocity change
             velocityChange.y = 0;
             velocityChange = transform.TransformDirection(velocityChange);
 
             r.AddForce(velocityChange, ForceMode.VelocityChange);
 
-            if (Input.GetButton("Jump") && canJump) // to be changed to a controller button
+            if (IsJumpPressed() && canJump) // to be changed to a controller button
             {
-                r.AddForce(transform.up * jumpHeight, ForceMode.VelocityChange);
+                r.AddForce(transform.up * (jumpHeight), ForceMode.VelocityChange); // Halve the jump height
             }
         }
 
@@ -74,5 +78,11 @@ public class SC_RigidbodyWalker : MonoBehaviour
     void OnCollisionStay()
     {
         grounded = true;
+    }
+
+    bool IsJumpPressed()
+    {
+        Debug.Log(jumpAction.action.WasPressedThisFrame());
+        return jumpAction.action.WasPressedThisFrame();
     }
 }

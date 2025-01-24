@@ -8,7 +8,7 @@ public class SC_PlanetGravity : MonoBehaviour
     PlanetGenerator planetGenerator;
     Queue<Tuple<GameObject, float>> planetQueue;
     GameObject closestPlanet;
-    const float planetGravityDistance = 10f;
+    const float planetGravityDistance = 20f;
 
     public Transform planet;
     public bool alignToPlanet = true;
@@ -16,6 +16,7 @@ public class SC_PlanetGravity : MonoBehaviour
     float gravityConstant = 20f;
     Rigidbody r;
     Transform t;
+
 
 
     void Start()
