@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class SC_RigidbodyWalker : MonoBehaviour
 {
-    public float speed = 15.0f;
+    public float speed = 5.0f;
     public bool canJump = true;
     public float jumpHeight = 2.0f;
     public Camera playerCamera;
@@ -23,7 +23,7 @@ public class SC_RigidbodyWalker : MonoBehaviour
     {
         r = GetComponent<Rigidbody>();
         r.freezeRotation = true;
-        r.useGravity = false;
+        r.useGravity = true;
         r.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
         rotation.y = transform.eulerAngles.y;
 
@@ -62,7 +62,7 @@ public class SC_RigidbodyWalker : MonoBehaviour
 
             r.AddForce(velocityChange, ForceMode.VelocityChange);
 
-            if (Input.GetButton("Jump") && canJump)
+            if (Input.GetButton("Jump") && canJump) // to be changed to a controller button
             {
                 r.AddForce(transform.up * jumpHeight, ForceMode.VelocityChange);
             }
