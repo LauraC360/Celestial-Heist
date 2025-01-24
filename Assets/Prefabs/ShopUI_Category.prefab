@@ -32,10 +32,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 5322303762937465954}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 2.5, y: -30}
-  m_SizeDelta: {x: -5, y: 60}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 2.5, y: 0}
+  m_SizeDelta: {x: -5, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5322303761628799733
 CanvasRenderer:
@@ -128,7 +128,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -197.76231, y: 0, z: -218.68414, w: 0}
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -146,7 +146,7 @@ GameObject:
   - component: {fileID: 5322303762937465948}
   - component: {fileID: 5322303762937465949}
   - component: {fileID: 5322303762937465951}
-  - component: {fileID: 5475811776348335588}
+  - component: {fileID: 3019132427102695647}
   m_Layer: 5
   m_Name: ShopUI_Category
   m_TagString: Untagged
@@ -172,7 +172,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 30, y: 60}
+  m_SizeDelta: {x: 0, y: 60}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &5322303762937465948
 CanvasRenderer:
@@ -226,9 +226,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CategoryName: {fileID: 5322303761628799738}
   BackgroundPanel: {fileID: 5322303762937465949}
+  CategoryButton: {fileID: 0}
   DefaultColour: {r: 0, g: 0, b: 0, a: 0.5019608}
   SelectedColour: {r: 0.5, g: 0.5, b: 0.5, a: 0.5019608}
---- !u!114 &5475811776348335588
+--- !u!114 &3019132427102695647
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
