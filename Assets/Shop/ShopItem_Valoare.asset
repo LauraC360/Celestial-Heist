@@ -16,3 +16,4 @@ MonoBehaviour:
   Name: Valoare
   Description: PE SISTEEEMMM
   Cost: 20
+  IsSinglePurchase: 1

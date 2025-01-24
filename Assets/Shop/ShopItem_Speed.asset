@@ -16,3 +16,4 @@ MonoBehaviour:
   Name: SpeedBoost
   Description: Boost for more speed
   Cost: 10000
+  IsSinglePurchase: 1

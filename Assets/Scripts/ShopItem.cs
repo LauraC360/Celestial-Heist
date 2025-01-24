@@ -10,4 +10,5 @@ public class ShopItem : ScriptableObject
     [TextArea(3, 5)] public string Description;
 
     public int Cost;
+    public bool IsSinglePurchase;
 }

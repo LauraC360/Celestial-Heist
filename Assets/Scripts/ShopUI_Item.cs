@@ -18,7 +18,7 @@ public class ShopUI_Item : MonoBehaviour
 
     ShopItem Item;
 
-    public void Bind(ShopItem item, UnityAction<ShopItem> onSelectedFn)
+    public void Bind(ShopItem item, UnityAction<ShopItem> onSelectedFn, int purchaseCount, IPurchaser purchaser)
     {
         Item = item;
         OnSelectedFn = onSelectedFn;
@@ -26,6 +26,16 @@ public class ShopUI_Item : MonoBehaviour
         ItemName.text = Item.Name;
         Description.text = Item.Description;
         Price.text = $"{(Item.Cost / 100f):0.00}";
+
+        if (Item.IsSinglePurchase && purchaseCount > 0)
+        {
+            Price.text = "Purchased";
+        }
+        else
+        {
+            bool canAfford = purchaser.GetCurrentFunds() >= Item.Cost;
+            SetCanAfford(canAfford);
+        }
 
         SetIsSelected(false);
     }

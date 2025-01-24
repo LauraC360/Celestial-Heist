@@ -16,3 +16,4 @@ MonoBehaviour:
   Name: Attack
   Description: your spaceship can attack
   Cost: 1000
+  IsSinglePurchase: 1

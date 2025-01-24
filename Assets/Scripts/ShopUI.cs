@@ -118,7 +118,7 @@ public class ShopUI : MonoBehaviour
 
         ShopItemToUIMap = new Dictionary<ShopItem, ShopUI_Item>();
 
-        foreach(var item in AvailableItems)
+        foreach (var item in AvailableItems)
         {
             if (item.Category != SelectedCategory)
                 continue;
@@ -126,12 +126,15 @@ public class ShopUI : MonoBehaviour
             var itemGO = Instantiate(ItemUIPrefab, ItemUIRoot);
             var itemUI = itemGO.GetComponent<ShopUI_Item>();
 
-            itemUI.Bind(item, OnItemSelected);
+            int purchaseCount = CurrentPurchaser.GetPurchaseCount(item);
+            itemUI.Bind(item, OnItemSelected, purchaseCount, CurrentPurchaser);
+
             ShopItemToUIMap[item] = itemUI;
         }
 
         RefreshShopUI_Common();
     }
+
 
     void OnCategorySelected(ShopItemCategory newlySelectedCategory)
     {
@@ -165,8 +168,17 @@ public class ShopUI : MonoBehaviour
 
     public void OnClickedPurchase()
     {
-        CurrentPurchaser.SpendFunds(SelectedItem.Cost);
-        RefreshShopUI_Common();
+        if (SelectedItem.IsSinglePurchase && CurrentPurchaser.HasPurchasedItem(SelectedItem))
+        {
+            return;
+        }
+        if (CurrentPurchaser.SpendFunds(SelectedItem.Cost))
+        {
+            CurrentPurchaser.AddPurchasedItem(SelectedItem);
+
+            RefreshShopUI_Common();
+            RefreshShopUI_Items();
+        }
     }
 
     public void OnClickedExit()
