@@ -20,9 +20,9 @@ public class PlanetGenerator : MonoBehaviour
     void Start()
     {
         generateObject(new Vector3(0, -100, 60), 0);
-        generateObject(new Vector3(Random.Range(0, 200), Random.Range(0, 200), Random.Range(0, 200)), 1);
-        generateObject(new Vector3(Random.Range(0, 200), Random.Range(0, 200), Random.Range(0, 200)), 2);
-        generateObject(new Vector3(Random.Range(0, 200), Random.Range(0, 200), Random.Range(0, 200)), 3);
+        generateObject(new Vector3(-300, Random.Range(-200, 200), Random.Range(-200, 200)), 1);
+        generateObject(new Vector3(0, Random.Range(-200, 200), Random.Range(-200, 200)), 2);
+        generateObject(new Vector3(300, Random.Range(-200, 200), Random.Range(-200, 200)), 3);
     }
 
     void generateObject(Vector3 position, int planet_id)
@@ -33,12 +33,14 @@ public class PlanetGenerator : MonoBehaviour
 
         FauxGravityAttractor attractor = currentPlanet.AddComponent<FauxGravityAttractor>();
 
+        BatchMeshSaver meshSaver = currentPlanet.AddComponent<BatchMeshSaver>();
+
         Planet planetScript = currentPlanet.AddComponent<Planet>();
         planetScript.resolution = Random.Range(50, 151);
         planetScript.origin = position;
 
         ShapeSettings shapeSettings = ScriptableObject.CreateInstance<ShapeSettings>();
-        shapeSettings.planetRadius = Random.Range(15f, 45f); // Set a random planet radius
+        shapeSettings.planetRadius = Random.Range(75f, 100f); // Set a random planet radius
         shapeSettings.noiseLayers = GenerateRandomNoiseLayers(); // Generate random noise layers
         planetScript.shapeSettings = shapeSettings;
 
