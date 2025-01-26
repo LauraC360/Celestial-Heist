@@ -119,7 +119,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 410
+  controlID: 2552
   draggingID: 0
 --- !u!114 &6
 MonoBehaviour:
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 365
+  controlID: 2553
   draggingID: 0
 --- !u!114 &7
 MonoBehaviour:
@@ -171,7 +171,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 50}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 313
+  controlID: 2554
   draggingID: 0
 --- !u!114 &8
 MonoBehaviour:
@@ -419,9 +419,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
+      m_SelectedIDs: f2730000
       m_LastClickedID: 0
-      m_ExpandedIDs: 26fbffff
+      m_ExpandedIDs: 2adafffff0dafffffedaffff92dbffffeae1ffff38e7ffffdeefffffa07e000082970000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -815,9 +815,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -25.450567, y: 45.168163, z: -8.827592}
+    m_Target: {x: -6.4800696, y: 47.52587, z: 3.394127}
     speed: 2
-    m_Value: {x: -25.450567, y: 45.168163, z: -8.827592}
+    m_Value: {x: -6.4800696, y: 47.52587, z: 3.394127}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -863,13 +863,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.026048047, y: 0.8803426, z: -0.048770115, w: -0.47088113}
+    m_Target: {x: 0.04458309, y: 0.9028771, z: -0.096099235, w: 0.41638267}
     speed: 2
-    m_Value: {x: -0.026050797, y: 0.8804354, z: -0.04877526, w: -0.47093078}
+    m_Value: {x: 0.04458309, y: 0.9028771, z: -0.096099235, w: 0.41638267}
   m_Size:
-    m_Target: 11.258565
+    m_Target: 0.01183901
     speed: 2
-    m_Value: 11.258565
+    m_Value: 0.01183901
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -1558,7 +1558,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets
+    - Assets/Materials/Spaceship
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -1566,16 +1566,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets
+  - Assets/Materials/Spaceship
   m_LastFoldersGridSize: -1
   m_LastProjectPath: E:\LAURA\UNI\S1.Y3\Celestial-Heist
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 79}
-    m_SelectedIDs: 7e8f0000
-    m_LastClickedID: 36734
-    m_ExpandedIDs: 000000007e8f000000ca9a3bffffff7f
+    m_SelectedIDs: 809b0000
+    m_LastClickedID: 39808
+    m_ExpandedIDs: 00000000c2960000d496000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1603,7 +1603,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000007e8f000000ca9a3bffffff7f
+    m_ExpandedIDs: 00000000c296000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1731,7 +1731,7 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: -3006
+  m_LastSelectedObjectID: 38786
 --- !u!114 &20
 MonoBehaviour:
   m_ObjectHideFlags: 52
