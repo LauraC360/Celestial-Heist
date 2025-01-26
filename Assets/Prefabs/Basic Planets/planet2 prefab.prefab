@@ -327,9 +327,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6455483904300085414}
+  - component: {fileID: 3477664360696899877}
   m_Layer: 0
   m_Name: planet2 prefab
-  m_TagString: Untagged
+  m_TagString: Planet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -355,6 +356,28 @@ Transform:
   - {fileID: 4514326132845868896}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3477664360696899877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2278083687812677483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfb9bcdf2ad235e4f879f9e063361fa3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  planet_id: -1
+  origin: {x: 0, y: 0, z: 0}
+  resolution: 10
+  autoUpdate: 1
+  faceRenderMask: 0
+  shapeSettings: {fileID: 0}
+  colourSettings: {fileID: 0}
+  shapeSettingsFoldout: 0
+  colourSettingsFoldout: 0
+  meshFilters: []
 --- !u!1 &2472244514394994120
 GameObject:
   m_ObjectHideFlags: 0

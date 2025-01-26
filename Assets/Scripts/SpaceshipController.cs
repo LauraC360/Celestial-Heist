@@ -21,6 +21,9 @@ public class SpaceshipController : MonoBehaviour
     [SerializeField] private GameObject deathVfx;
     [SerializeField] private AudioSource engineSound;
 
+    public int lapNumber;
+    public int chekpointIndex;
+
     private Rigidbody _rigidbody;
     private bool _dead = false;
     
@@ -29,6 +32,10 @@ public class SpaceshipController : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody>();
 
         StartCoroutine(FiringCoroutine());
+
+        lapNumber = 1;
+
+        chekpointIndex = 0;
     }
 
     private void Update()
