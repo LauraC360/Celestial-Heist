@@ -5,7 +5,7 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 using TMPro;
 
-public class ShopUI_Category : MonoBehaviour
+public class InventoryUI_Category : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI CategoryName;
     [SerializeField] Image BackgroundPanel;

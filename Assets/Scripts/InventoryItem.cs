@@ -1,9 +1,9 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Shop/Item", fileName = "ShopItem_")]
-public class ShopItem : ScriptableObject
+[CreateAssetMenu(menuName = "Inventory/Item", fileName = "InventoryItem_")]
+public class InventoryItem : ScriptableObject
 {
     public ShopItemCategory Category;
     public string Name;
@@ -11,4 +11,5 @@ public class ShopItem : ScriptableObject
 
     public int Cost;
     public bool IsSinglePurchase;
+    public int Quantity;
 }
