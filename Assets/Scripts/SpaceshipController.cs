@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SpaceshipController : MonoBehaviour
@@ -20,6 +21,9 @@ public class SpaceshipController : MonoBehaviour
     [SerializeField] private float health = 1000f;
     [SerializeField] private GameObject deathVfx;
     [SerializeField] private AudioSource engineSound;
+    [SerializeField] private int team;
+
+    public int Team => team;
 
     private Rigidbody _rigidbody;
     private bool _dead = false;
@@ -51,6 +55,10 @@ public class SpaceshipController : MonoBehaviour
             return;
         
         var targetShip = frontRadar.spaceships.Count > 0 ? frontRadar.spaceships[0] : null;
+
+        if (crosshair == null)
+            return;
+        
         crosshair.SetToTarget(targetShip ? targetShip.transform : null);
     }
 

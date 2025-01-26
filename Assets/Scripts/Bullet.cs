@@ -1,10 +1,13 @@
 using System;
 using UnityEngine;
+using VolumetricLines;
 
 public class Bullet : MonoBehaviour
 {
     [SerializeField] private Rigidbody rigidbody;
     [SerializeField] private GameObject vfx;
+    [SerializeField] private Color[] teamColors;
+    [SerializeField] private VolumetricLineBehavior bulletView;
     private SpaceshipController _spaceshipController;
     
     public void Fire(SpaceshipController spaceshipController, Vector3 position, float speed)
@@ -13,6 +16,8 @@ public class Bullet : MonoBehaviour
         
         transform.LookAt(position);
         rigidbody.velocity = transform.forward * speed;
+        
+        bulletView.LineColor = teamColors[spaceshipController.Team];
     }
 
     private void OnTriggerEnter(Collider other)

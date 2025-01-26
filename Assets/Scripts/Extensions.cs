@@ -17,4 +17,23 @@ public static class Extensions
 
         return targetLocalVector;
     }
+    
+    public static Vector2 RotateVector(this Vector2 v, float angleDegrees)
+    {
+        // Convert angle from degrees to radians
+        float angleRadians = angleDegrees * Mathf.Deg2Rad;
+
+        // Calculate the rotated vector
+        float x = v.x * Mathf.Cos(angleRadians) - v.y * Mathf.Sin(angleRadians);
+        float y = v.x * Mathf.Sin(angleRadians) + v.y * Mathf.Cos(angleRadians);
+
+        return new Vector2(x, y);
+    }
+    
+    public static float Map(this float value, float a, float b, float c, float d)
+    {
+        float normalized = (value - a) / (b - a);
+
+        return c + normalized * (d - c);
+    }
 }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1208642358572312424}
   - component: {fileID: 219425786207892469}
   - component: {fileID: 3904476213689014247}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -115,7 +115,7 @@ GameObject:
   - component: {fileID: 5925019272032129098}
   - component: {fileID: 218205444775602325}
   - component: {fileID: 3509690111055792405}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -180,6 +180,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigidbody: {fileID: 5925019272032129098}
   vfx: {fileID: 2708598583397607911, guid: 6398d43fe79ea0140913dc5530c646af, type: 3}
+  teamColors:
+  - {r: 0, g: 0.6745098, b: 1, a: 1}
+  - {r: 1, g: 0, b: 0, a: 1}
+  bulletView: {fileID: 3904476213689014247}
 --- !u!136 &3509690111055792405
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -213,7 +217,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2422154276641019375}
   - component: {fileID: 3744227865455900306}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Sound
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -5,17 +5,17 @@ using UnityEngine;
 
 public class Radar : MonoBehaviour
 {
-    [SerializeField] private GameObject parent;
+    [SerializeField] private SpaceshipController parent;
 
-    public List<EnemySpaceship> spaceships = new List<EnemySpaceship>();
+    public List<SpaceshipController> spaceships = new List<SpaceshipController>();
 
     private void OnTriggerEnter(Collider other)
     {
         if(other.attachedRigidbody == null)
             return;
         
-        var spaceship = other.attachedRigidbody.GetComponent<EnemySpaceship>();
-        if(spaceship != null && !spaceships.Contains(spaceship))
+        var spaceship = other.attachedRigidbody.GetComponent<SpaceshipController>();
+        if(spaceship != null && spaceship.Team != parent.Team && !spaceships.Contains(spaceship))
             spaceships.Add(spaceship);
     }
 
@@ -24,7 +24,7 @@ public class Radar : MonoBehaviour
         if(other.attachedRigidbody == null)
             return;
         
-        var spaceship = other.attachedRigidbody.GetComponent<EnemySpaceship>();
+        var spaceship = other.attachedRigidbody.GetComponent<SpaceshipController>();
         if(spaceship != null)
             spaceships.Remove(spaceship);
     }
