@@ -111,6 +111,7 @@ MonoBehaviour:
   patrolPoints: {fileID: 0}
   patrolPointDistanceRadius: 25
   followPointDistanceRadius: 100
+  frontRadar: {fileID: 0}
   radar: {fileID: 7395670277457296433}
 --- !u!1 &5862083257673765901
 GameObject:

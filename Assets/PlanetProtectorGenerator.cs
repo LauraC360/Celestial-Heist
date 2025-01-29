@@ -11,7 +11,7 @@ public class PlanetProtectorGenerator : MonoBehaviour
     {
         for (int i = 0; i < spaceshipCount; i++)
         {
-            GameObject spaceshipClone = Instantiate(spaceship);
+            GameObject spaceshipClone = World.Instance.Instantiate(spaceship);
             
             float radius = Random.Range(minRadius, maxRadius);
             

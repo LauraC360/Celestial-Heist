@@ -38,7 +38,7 @@ public class Bullet : MonoBehaviour
 
     private void Die()
     {
-        var deathVfx = Instantiate(vfx);
+        var deathVfx = World.Instance.Instantiate(vfx);
         deathVfx.transform.position = transform.position;
         Destroy(deathVfx, 5f);
         Destroy(gameObject);

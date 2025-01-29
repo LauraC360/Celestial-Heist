@@ -2070,6 +2070,7 @@ MonoBehaviour:
   health: 1000
   deathVfx: {fileID: 0}
   engineSound: {fileID: 5444962509898330667}
+  team: 0
 --- !u!54 &3979525753080017345
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -8899,7 +8900,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b983caf7322911344b58c5436813d640, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parent: {fileID: 628447934133989829}
+  parent: {fileID: 0}
   spaceships: []
 --- !u!135 &8820743506708434937
 SphereCollider:
@@ -26700,7 +26701,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b983caf7322911344b58c5436813d640, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parent: {fileID: 628447934133989829}
+  parent: {fileID: 0}
   spaceships: []
 --- !u!1001 &8610191248586795988
 PrefabInstance:

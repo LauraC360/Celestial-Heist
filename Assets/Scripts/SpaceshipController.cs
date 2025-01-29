@@ -88,7 +88,7 @@ public class SpaceshipController : MonoBehaviour
                 
                 pistols[i].LookAt(target);
                 
-                var laser = Instantiate(laserPrefab);
+                var laser = World.Instance.Instantiate(laserPrefab);
                 laser.transform.position = pistols[i].position;
                 laser.Fire(this, target, bulletSpeed);
             }
@@ -111,7 +111,7 @@ public class SpaceshipController : MonoBehaviour
     private void Die()
     {
         _dead = true;
-        var deathVfx = Instantiate(this.deathVfx);
+        var deathVfx = World.Instance.Instantiate(this.deathVfx);
         deathVfx.transform.position = transform.position;
         Destroy(deathVfx, 5f);
         Destroy(gameObject);

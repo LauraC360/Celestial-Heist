@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class SpaceshipGravity : MonoBehaviour
@@ -15,20 +16,27 @@ public class SpaceshipGravity : MonoBehaviour
     void Awake()
     {
         _controller = GetComponent<PlayerController>();
+
+        StartCoroutine(PostPhysicsGravity());
     }
     
-    void FixedUpdate()
+    private IEnumerator PostPhysicsGravity()
     {
-        if (_controller != null)
+        while (true)
         {
-            var gravityDirection = _spaceship.rotation * Vector3.down; 
+            yield return new WaitForFixedUpdate();
             
-            _currentFallSpeed += gravityStrength * Time.fixedDeltaTime;
-            _currentFallSpeed = Mathf.Min(_currentFallSpeed, terminalVelocity);
+            if (_controller != null)
+            {
+                var gravityDirection = _spaceship.rotation * Vector3.down; 
             
-            Vector3 customGravity = gravityDirection.normalized * _currentFallSpeed;
-            if (!_controller.Move(customGravity * Time.fixedDeltaTime))
-                _currentFallSpeed = 0.01f;
+                _currentFallSpeed += gravityStrength * Time.fixedDeltaTime;
+                _currentFallSpeed = Mathf.Min(_currentFallSpeed, terminalVelocity);
+            
+                Vector3 customGravity = gravityDirection.normalized * _currentFallSpeed;
+                if (!_controller.Move(customGravity * Time.fixedDeltaTime))
+                    _currentFallSpeed = 0.01f;
+            }
         }
     }
 }

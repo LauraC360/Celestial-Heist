@@ -39,8 +39,6 @@ public class PlanetProtector : AIShip
             return;
         }
         
-        Debug.Log("Detected player");
-        
         if (_movementCoroutine != null)
             StopCoroutine(_movementCoroutine);
 
