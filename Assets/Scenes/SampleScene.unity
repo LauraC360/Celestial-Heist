@@ -5530,7 +5530,7 @@ PrefabInstance:
     - target: {fileID: 5329341064466157038, guid: fa43056480667f241aecfe7f65a3b0dd,
         type: 3}
       propertyPath: m_Radius
-      value: 500
+      value: 600
       objectReference: {fileID: 0}
     - target: {fileID: 5458477625316983823, guid: fa43056480667f241aecfe7f65a3b0dd,
         type: 3}
@@ -5567,6 +5567,21 @@ PrefabInstance:
       propertyPath: inputManager
       value: 
       objectReference: {fileID: 1951283094}
+    - target: {fileID: 7308131701189141240, guid: fa43056480667f241aecfe7f65a3b0dd,
+        type: 3}
+      propertyPath: yawMultiplier
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7308131701189141240, guid: fa43056480667f241aecfe7f65a3b0dd,
+        type: 3}
+      propertyPath: rollMultiplier
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7308131701189141240, guid: fa43056480667f241aecfe7f65a3b0dd,
+        type: 3}
+      propertyPath: pitchMultiplier
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 7308131701189141240, guid: fa43056480667f241aecfe7f65a3b0dd,
         type: 3}
       propertyPath: thrustMultiplier
