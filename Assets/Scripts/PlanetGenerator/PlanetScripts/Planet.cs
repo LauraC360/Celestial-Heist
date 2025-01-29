@@ -49,12 +49,11 @@ public class Planet : MonoBehaviour {
             {
                 GameObject meshObj = new GameObject("mesh");
                 meshObj.transform.SetParent(transform);
-                meshObj.transform.localPosition = Vector3.zero; // Set the local position relative to the origin
+                meshObj.transform.localPosition = Vector3.zero; 
                 meshObj.AddComponent<MeshRenderer>();
                 meshFilters[i] = meshObj.AddComponent<MeshFilter>();
                 meshFilters[i].sharedMesh = new Mesh();
                 
-                // Add MeshCollider to the same GameObject as MeshRenderer
                 meshObj.AddComponent<MeshCollider>();
             }
             meshFilters[i].GetComponent<MeshRenderer>().sharedMaterial = colourSettings.planetMaterial;
@@ -74,7 +73,7 @@ public class Planet : MonoBehaviour {
         Initialize();
         GenerateMesh();
         GenerateColours();
-        UpdateColliders(); // Update colliders after generating the mesh
+        UpdateColliders(); 
     }
 
     private void UpdateColliders()
@@ -84,8 +83,8 @@ public class Planet : MonoBehaviour {
             MeshCollider meshCollider = meshFilters[i].GetComponent<MeshCollider>();
             if (meshCollider != null)
             {
-                meshCollider.sharedMesh = null; // Clear the existing mesh
-                meshCollider.sharedMesh = meshFilters[i].sharedMesh; // Assign the updated mesh
+                meshCollider.sharedMesh = null;
+                meshCollider.sharedMesh = meshFilters[i].sharedMesh;
             }
         }
     }
@@ -124,5 +123,26 @@ public class Planet : MonoBehaviour {
     void GenerateColours()
     {
         colourGenerator.UpdateColours();
+    }
+
+    public float GetSurfaceHeight(Vector3 point, int id)
+    {
+        Vector3 direction = point.normalized;
+        float planetRadius = shapeSettings.planetRadius;
+
+        Ray ray = new Ray(direction * (planetRadius * 10), -direction);
+        RaycastHit hit;
+
+        foreach (var meshFilter in meshFilters)
+        {
+            MeshCollider meshCollider = meshFilter.GetComponent<MeshCollider>();
+            if (meshCollider.Raycast(ray, out hit, planetRadius * 10))
+            {
+                Debug.Log($"Surface height at point {point} on for the plant id {id}, planet id {planet_id}: {hit.point.magnitude}");
+                return hit.point.magnitude;
+            }
+        }
+
+        return planetRadius;
     }
 }
