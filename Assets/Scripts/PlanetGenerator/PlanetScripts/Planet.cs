@@ -52,19 +52,16 @@ public class Planet : MonoBehaviour
                 meshObj.transform.localPosition = Vector3.zero; 
                 meshObj.AddComponent<MeshRenderer>();
                 meshFilters[i] = meshObj.AddComponent<MeshFilter>();
-                meshFilters[i].sharedMesh = new Mesh();
+                meshFilters[i].mesh = new Mesh();
                 
                 meshObj.AddComponent<MeshCollider>();
             }
             meshFilters[i].GetComponent<MeshRenderer>().sharedMaterial = colourSettings.planetMaterial;
 
-            terrainFaces[i] = new TerrainFace(shapeGenerator, meshFilters[i].sharedMesh, resolution, directions[i], meshFilters[i].gameObject);
+            terrainFaces[i] = new TerrainFace(shapeGenerator, meshFilters[i].mesh, resolution, directions[i], meshFilters[i].gameObject);
             bool renderFace = faceRenderMask == FaceRenderMask.All || (int)faceRenderMask - 1 == i;
             meshFilters[i].gameObject.SetActive(renderFace);
         }
-
-        // Add the PlanetGravity script
-        gameObject.AddComponent<PlanetGravity>();
 
         gameObject.tag = "Planet"; // Set the tag to "Planet"
     }
@@ -89,7 +86,7 @@ public class Planet : MonoBehaviour
             if (meshCollider != null)
             {
                 meshCollider.sharedMesh = null;
-                meshCollider.sharedMesh = meshFilters[i].sharedMesh;
+                meshCollider.sharedMesh = meshFilters[i].mesh;
             }
         }
     }
