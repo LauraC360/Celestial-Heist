@@ -25,6 +25,9 @@ public class SpaceshipController : MonoBehaviour
 
     public int Team => team;
 
+    [HideInInspector] public int lapNumber;
+    [HideInInspector] public int chekpointIndex;
+
     private Rigidbody _rigidbody;
     private bool _dead = false;
     
@@ -33,6 +36,10 @@ public class SpaceshipController : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody>();
 
         StartCoroutine(FiringCoroutine());
+
+        lapNumber = 1;
+
+        chekpointIndex = 0;
     }
 
     private void Update()

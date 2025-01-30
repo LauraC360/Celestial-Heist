@@ -25,7 +25,7 @@ public class SolarSystem : MonoBehaviour
             var circlePos = Random.insideUnitCircle.normalized * radius;
             newPlanet.transform.localPosition = new Vector3(circlePos.x, 0, circlePos.y);
             
-            newPlanet.GetComponent<Planet>().Setup(i, transform);
+            newPlanet.GetComponent<PlanetRotator>().Setup(i, transform);
 
             radius += radiusDistance;
             
