@@ -30,10 +30,8 @@ public static class Extensions
         return new Vector2(x, y);
     }
     
-    public static float Map(this float value, float a, float b, float c, float d)
+    public static float Map(float value, float fromLow, float fromHigh, float toLow, float toHigh) 
     {
-        float normalized = (value - a) / (b - a);
-
-        return c + normalized * (d - c);
+        return (value - fromLow) * (toHigh - toLow) / (fromHigh - fromLow) + toLow;
     }
 }

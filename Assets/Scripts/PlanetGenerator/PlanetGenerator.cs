@@ -14,11 +14,6 @@ public class PlanetGenerator : MonoBehaviour
 
     CollectiblesGenerator collectiblesGenerator;
 
-    private static float map(float value, float fromLow, float fromHigh, float toLow, float toHigh) 
-    {
-        return (value - fromLow) * (toHigh - toLow) / (fromHigh - fromLow) + toLow;
-    }
-
     void Start()
     {
         generateObject(new Vector3(0, -100, 60), 0);
@@ -35,7 +30,6 @@ public class PlanetGenerator : MonoBehaviour
     {
         currentPlanet = new GameObject();
         currentPlanet.transform.position = position;
-        // Debug.Log($"Planet created at position: {position}");
 
         BatchMeshSaver meshSaver = currentPlanet.AddComponent<BatchMeshSaver>();
 

@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Planet : MonoBehaviour {
-
+public class Planet : MonoBehaviour
+{
     [HideInInspector]
     public int planet_id;
     [HideInInspector]
