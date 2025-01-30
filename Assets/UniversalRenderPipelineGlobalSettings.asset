@@ -15,14 +15,20 @@ MonoBehaviour:
   k_AssetVersion: 3
   m_RenderingLayerNames:
   - Light Layer default
-  - Light Layer 1
-  - Light Layer 2
-  - Light Layer 3
-  - Light Layer 4
-  - Light Layer 5
-  - Light Layer 6
-  - Light Layer 7
-  m_ValidRenderingLayers: 255
+  - Planet0
+  - Planet1
+  - Planet2
+  - Planet3
+  - Planet4
+  - Planet5
+  - Planet6
+  - Planet7
+  - Planet8
+  - Planet9
+  - Planet10
+  - Planet11
+  - Planet12
+  m_ValidRenderingLayers: 16383
   lightLayerName0: Light Layer default
   lightLayerName1: Light Layer 1
   lightLayerName2: Light Layer 2

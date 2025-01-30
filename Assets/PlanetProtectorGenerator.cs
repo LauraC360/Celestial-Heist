@@ -7,7 +7,7 @@ public class PlanetProtectorGenerator : MonoBehaviour
     [SerializeField] private float minRadius;
     [SerializeField] private float maxRadius;
 
-    private void Start()
+    public void GeneratePlanetProtectors()
     {
         for (int i = 0; i < spaceshipCount; i++)
         {
