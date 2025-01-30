@@ -62,6 +62,11 @@ public class Planet : MonoBehaviour {
             bool renderFace = faceRenderMask == FaceRenderMask.All || (int)faceRenderMask - 1 == i;
             meshFilters[i].gameObject.SetActive(renderFace);
         }
+
+        // Add the PlanetGravity script
+        gameObject.AddComponent<PlanetGravity>();
+
+        gameObject.tag = "Planet"; // Set the tag to "Planet"
     }
 
     public void GeneratePlanet(int planet_id)

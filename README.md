@@ -1,3 +1,4 @@
+
 #### State of the art (Tema 4) : 
 https://docs.google.com/document/d/1UcxKw0ZQhtFrm6G72I5pamTaTXNyD2TkA44N2hv6_o0/edit?usp=sharing
 
@@ -22,3 +23,18 @@ https://docs.google.com/document/d/11vXJyhhCPkRrYsYOrd1YBse0PN7Dzwt9ZpcO6hwih5Q/
 ![ezyZip1-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/5adf91a9-6f3e-409e-80bf-adddc7ba235e)
 
 ![ezyZip2-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/95042ec4-140f-4ac6-8bca-de4adc956537)
+
+#### Week number: 12
+  Progress:
+  Player Controls & Gravitation Base ✅
+  Planet fix and Planet Gravitation Base ✅
+  (code updates on branch laura)
+
+  ![ezgif-3-ee42c8736f](https://github.com/user-attachments/assets/003c4d83-d4e4-4237-a81b-386d7c8c36d3)
+
+  ![ezgif-3-820e401efb](https://github.com/user-attachments/assets/b84bffb9-1044-4274-84e8-370fefb3ab74)
+
+#### Week number: 13
+  Progress:
+  Racing Module: Checkpoints, Laps, Finish Line ✅
+  (code updates on branch RacingModule)
