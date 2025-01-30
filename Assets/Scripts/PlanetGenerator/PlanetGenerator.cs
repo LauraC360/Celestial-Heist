@@ -12,6 +12,8 @@ public class PlanetGenerator : MonoBehaviour
     [HideInInspector]
     public Queue<Tuple<GameObject, float>> planetQueue = new Queue<Tuple<GameObject, float>>();
 
+    CollectiblesGenerator collectiblesGenerator;
+
     private static float map(float value, float fromLow, float fromHigh, float toLow, float toHigh) 
     {
         return (value - fromLow) * (toHigh - toLow) / (fromHigh - fromLow) + toLow;
@@ -23,6 +25,10 @@ public class PlanetGenerator : MonoBehaviour
         generateObject(new Vector3(-300, Random.Range(-200, 200), Random.Range(-200, 200)), 1);
         generateObject(new Vector3(0, Random.Range(-200, 200), Random.Range(-200, 200)), 2);
         generateObject(new Vector3(300, Random.Range(-200, 200), Random.Range(-200, 200)), 3);
+
+        collectiblesGenerator = GameObject.Find("CollectiblesGenerator").GetComponent<CollectiblesGenerator>();
+        collectiblesGenerator.planetQueue = planetQueue;
+        collectiblesGenerator.GenerateCollectibles();
     }
 
     void generateObject(Vector3 position, int planet_id)
@@ -30,8 +36,6 @@ public class PlanetGenerator : MonoBehaviour
         currentPlanet = new GameObject();
         currentPlanet.transform.position = position;
         // Debug.Log($"Planet created at position: {position}");
-
-        FauxGravityAttractor attractor = currentPlanet.AddComponent<FauxGravityAttractor>();
 
         BatchMeshSaver meshSaver = currentPlanet.AddComponent<BatchMeshSaver>();
 
