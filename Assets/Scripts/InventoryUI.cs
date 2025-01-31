@@ -16,6 +16,8 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] GameObject CategoryUIPrefab;
     [SerializeField] GameObject ItemUIPrefab;
 
+    [SerializeField] Collider pokeCollider;
+
     // eliminate this / change to Bought Items
     //[SerializeField] List<ShopItem> AvailableItems;
     private List<ShopItem> BoughtItems;
@@ -107,7 +109,7 @@ public class InventoryUI : MonoBehaviour
             var categoryGO = Instantiate(CategoryUIPrefab, CategoryUIRoot);
             var categoryUI = categoryGO.GetComponent<ShopUI_Category>();
 
-            categoryUI.Bind(category, OnCategorySelected);
+            categoryUI.Bind(category, OnCategorySelected, pokeCollider);
             ShopCategoryToUIMap[category] = categoryUI;
         }
 

@@ -25,6 +25,8 @@ public class ShopUI : MonoBehaviour
     Dictionary<ShopItemCategory, ShopUI_Category> ShopCategoryToUIMap;
     Dictionary<ShopItem, ShopUI_Item> ShopItemToUIMap;
 
+    [SerializeField] Collider PokeCollider;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -101,8 +103,9 @@ public class ShopUI : MonoBehaviour
         {
             var categoryGO = Instantiate(CategoryUIPrefab, CategoryUIRoot);
             var categoryUI = categoryGO.GetComponent<ShopUI_Category>();
+            // categoryUI.PokeCollider = PokeCollider;
 
-            categoryUI.Bind(category, OnCategorySelected);
+            categoryUI.Bind(category, OnCategorySelected, PokeCollider);
             ShopCategoryToUIMap[category] = categoryUI;
         }
 

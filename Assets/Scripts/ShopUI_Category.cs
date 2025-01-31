@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using UnityEngine.XR.Interaction.Toolkit.Filtering;
 using TMPro;
 
 public class ShopUI_Category : MonoBehaviour
@@ -14,12 +15,16 @@ public class ShopUI_Category : MonoBehaviour
 
     ShopItemCategory Category;
     UnityAction<ShopItemCategory> OnSelectedFn;
+
+    public Collider PokeCollider;
     
-    public void Bind(ShopItemCategory category, UnityAction<ShopItemCategory> onSelectedFn)
+    public void Bind(ShopItemCategory category, UnityAction<ShopItemCategory> onSelectedFn, Collider pokeCollider)
     {
         Category = category;
         CategoryName.text = Category.Name;
         OnSelectedFn = onSelectedFn;
+        XRPokeFilter pokeFilter = gameObject.GetComponent<XRPokeFilter>();
+        pokeFilter.pokeCollider = pokeCollider;
 
         SetIsSelected(false);
     }
@@ -33,4 +38,9 @@ public class ShopUI_Category : MonoBehaviour
     {
         OnSelectedFn.Invoke(Category);
     }
+
+    public void debug(){
+        Debug.Log("Category: " + Category.Name);
+    }
+
 }
