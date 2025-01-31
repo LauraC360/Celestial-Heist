@@ -2,19 +2,20 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using Random = UnityEngine.Random;
 
 public class CollectiblesGenerator : MonoBehaviour
 {
+    public List<GameObject> collectibles = new List<GameObject>();
 
     // PlanetGenerator planetGenerator;
     [HideInInspector]
     public Queue<Tuple<GameObject, float>> planetQueue;
+    
 
-    public List<GameObject> collectibles = new List<GameObject>();
-
-    const int MIN_COLLECTIBLES_PER_TYPE = 5;
-    const int MAX_COLLECTIBLES_PER_TYPE = 10;
+    const int MIN_COLLECTIBLES_PER_TYPE = 30;
+    const int MAX_COLLECTIBLES_PER_TYPE = 50;
 
     // void Start()
     // {
@@ -45,9 +46,10 @@ public class CollectiblesGenerator : MonoBehaviour
 
                 Quaternion rotation = Quaternion.FromToRotation(Vector3.up, position.normalized);
                 GameObject collectible = Instantiate(collectibles[Random.Range(0, collectibles.Count)], surfacePosition, rotation);
-                collectible.name = $"Collectible_{id++}";
-                collectible.tag = "Collectible";
                 collectible.transform.parent = currentPlanet.transform;
+
+                collectible.AddComponent<Collectible>();
+                collectible.GetComponent<Collectible>().Initialize(id++);
             }
         }
     }

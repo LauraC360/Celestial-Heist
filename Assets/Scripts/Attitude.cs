@@ -25,7 +25,7 @@ public class Attitude : MonoBehaviour
         {
             var euler = ship.eulerAngles;
             rollDisplay.DOLocalRotate( new Vector3(0, -euler.z, 0), UpdateInterval);
-            Debug.Log(euler);
+            // Debug.Log(euler);
             
             var height = 0f;
             if (euler.x > 180)

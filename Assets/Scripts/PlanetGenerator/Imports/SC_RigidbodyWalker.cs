@@ -82,7 +82,7 @@ public class SC_RigidbodyWalker : MonoBehaviour
 
     bool IsJumpPressed()
     {
-        Debug.Log(jumpAction.action.WasPressedThisFrame());
+        // Debug.Log(jumpAction.action.WasPressedThisFrame());
         return jumpAction.action.WasPressedThisFrame();
     }
 }
