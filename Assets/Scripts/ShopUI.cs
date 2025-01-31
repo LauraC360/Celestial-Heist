@@ -16,7 +16,7 @@ public class ShopUI : MonoBehaviour
     [SerializeField] GameObject ItemUIPrefab;
 
     [SerializeField] List<ShopItem> AvailableItems;
-    
+
     IPurchaser CurrentPurchaser;
     ShopItemCategory SelectedCategory;
     ShopItem SelectedItem;
@@ -30,12 +30,7 @@ public class ShopUI : MonoBehaviour
     {
        
         CurrentPurchaser = FindObjectOfType<Purchaser>();
-        
-        if (InventoryManager.Instance == null)
-        {
-            GameObject inventoryManagerObject = new GameObject("InventoryManager");
-            inventoryManagerObject.AddComponent<InventoryManager>();
-        }
+       
 
         RefreshShopUI_Common();
         RefreshShopUI_Categories();
@@ -180,15 +175,7 @@ public class ShopUI : MonoBehaviour
         if (CurrentPurchaser.SpendFunds(SelectedItem.Cost))
         {
             CurrentPurchaser.AddPurchasedItem(SelectedItem);
-            
-            // adding to inventory
-            InventoryManager.Instance.AddItem(SelectedItem);
-            if (!SelectedItem.IsSinglePurchase)
-                SelectedItem.Quantity++;
-            
-            // // logging
-            // InventoryManager.Instance.GetOwnedItems();
-            
+
             RefreshShopUI_Common();
             RefreshShopUI_Items();
         }

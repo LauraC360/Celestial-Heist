@@ -1,168 +1,77 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-
 public class InventoryUI : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI AvailableFunds;
-    [SerializeField] Transform CategoryUIRoot;
     [SerializeField] Transform ItemUIRoot;
-
-    [SerializeField] Button EquipButton;
-    
-    [SerializeField] GameObject CategoryUIPrefab;
     [SerializeField] GameObject ItemUIPrefab;
+    [SerializeField] List<ShopItem> InventoryItems;
 
-    // eliminate this / change to Bought Items
-    //[SerializeField] List<ShopItem> AvailableItems;
-    private List<ShopItem> BoughtItems;
-    
     IPurchaser CurrentPurchaser;
-    ShopItemCategory SelectedCategory;
     ShopItem SelectedItem;
+    Dictionary<ShopItem, InventoryUI_Item> InventoryItemToUIMap;
 
-    public InventoryManager Inventory;
-    
-    // map to inventory items and categories
-    // that uses the same assets actually
-    List<ShopItemCategory> ShopCategories;
-    Dictionary<ShopItemCategory, ShopUI_Category> ShopCategoryToUIMap;
-    Dictionary<ShopItem, ShopUI_Item> ShopItemToUIMap;
-    
-    public delegate void ItemEquippedCallback(ShopItem item);
-    
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        if (Inventory != null)
+        // Initialize the purchaser and refresh the UI
+        CurrentPurchaser = FindObjectOfType<Purchaser>();
+        RefreshInventoryUI();
+    }
+
+    void RefreshInventoryUI()
+    {
+        // Clear existing UI elements
+        for (int childIndex = ItemUIRoot.childCount - 1; childIndex >= 0; childIndex--)
         {
-            BoughtItems = Inventory.GetOwnedItems();
-            
-            Debug.Log("InventoryUI: Found InventoryManager");
-
-            Debug.Log("InventoryUI: Found items count: " + BoughtItems.Count);
+            var childGO = ItemUIRoot.GetChild(childIndex).gameObject;
+            Destroy(childGO);
         }
-        //RefreshShopUI_Common();
-        RefreshShopUI_Categories();
-        RefreshShopUI_Items();
+
+        InventoryItemToUIMap = new Dictionary<ShopItem, InventoryUI_Item>();
+
+        // Create UI elements for each purchased item
+        foreach (var kvp in CurrentPurchaser.GetPurchasedItems())
+        {
+            var item = kvp.Key;
+            var itemGO = Instantiate(ItemUIPrefab, ItemUIRoot);
+            var itemUI = itemGO.GetComponent<InventoryUI_Item>();
+
+            itemUI.Bind(item, OnItemSelected);
+            InventoryItemToUIMap[item] = itemUI;
+        }
+
+        RefreshInventoryUI_Common();
     }
 
-    // Update is called once per frame
-    void Update()
+    void RefreshInventoryUI_Common()
     {
-
-    }
-
-    void RefreshShopUI_Common()
-    {
+        // Update available funds display
         if (CurrentPurchaser != null)
             AvailableFunds.text = $"{(CurrentPurchaser.GetCurrentFunds() / 100f):0.00}";
         else
             AvailableFunds.text = string.Empty;
 
-        if (CurrentPurchaser != null && SelectedItem != null)
+        // Update each item's affordability status
+        foreach (var kvp in InventoryItemToUIMap)
         {
-            //EquipButton.interactable = CurrentPurchaser.HasPurchasedItem(SelectedItem);
-            EquipButton.interactable = true;
-        }
-        
-        if (SelectedItem != null)
-        {
-            if (InventoryManager.Instance.GetEquippedItem() == SelectedItem)
-            {
-                EquipButton.GetComponentInChildren<TextMeshProUGUI>().text = "Unequip";
-            }
+            var item = kvp.Key;
+            var itemUI = kvp.Value;
+
+            if (CurrentPurchaser != null)
+                itemUI.SetCanAfford(item.Cost <= CurrentPurchaser.GetCurrentFunds());
             else
-            {
-                EquipButton.GetComponentInChildren<TextMeshProUGUI>().text = "Equip";
-            }
+                itemUI.SetCanAfford(false);
         }
-    }
-
-    void RefreshShopUI_Categories()
-    {
-        for (int childIndex = CategoryUIRoot.childCount - 1; childIndex >= 0; childIndex--)
-        {
-            var childGO = CategoryUIRoot.GetChild(childIndex).gameObject;
-
-            Destroy(childGO);
-        }
-
-        ShopCategories = new List<ShopItemCategory>();
-        ShopCategoryToUIMap = new Dictionary<ShopItemCategory, ShopUI_Category>();
-        
-        foreach (var item in BoughtItems)
-        {
-            if (!ShopCategories.Contains(item.Category))
-                ShopCategories.Add(item.Category);
-        }
-
-        ShopCategories.Sort((lhs, rhs) => lhs.Name.CompareTo(rhs.Name));
-
-        foreach (var category in ShopCategories)
-        {
-            var categoryGO = Instantiate(CategoryUIPrefab, CategoryUIRoot);
-            var categoryUI = categoryGO.GetComponent<ShopUI_Category>();
-
-            categoryUI.Bind(category, OnCategorySelected);
-            ShopCategoryToUIMap[category] = categoryUI;
-        }
-
-        if (!ShopCategories.Contains(SelectedCategory))
-            SelectedCategory = null;
-
-        OnCategorySelected(SelectedCategory);
-    }
-
-    void RefreshShopUI_Items()
-    {
-        for (int childIndex = ItemUIRoot.childCount - 1; childIndex >= 0; childIndex--)
-        {
-            Destroy(ItemUIRoot.GetChild(childIndex).gameObject);
-        }
-
-        ShopItemToUIMap = new Dictionary<ShopItem, ShopUI_Item>();
-
-        foreach (var item in InventoryManager.Instance.GetOwnedItems()) // ⬅️ Acum ia item-urile cumpărate
-        {
-            if (item.Category != SelectedCategory)
-                continue;
-
-            var itemGO = Instantiate(ItemUIPrefab, ItemUIRoot);
-            var itemUI = itemGO.GetComponent<ShopUI_Item>();
-
-            itemUI.Bind(item, OnItemSelected, 1, CurrentPurchaser);
-
-            ShopItemToUIMap[item] = itemUI;
-        }
-
-        RefreshShopUI_Common();
-    }
-
-
-    void OnCategorySelected(ShopItemCategory newlySelectedCategory)
-    {
-        if (SelectedCategory != null && newlySelectedCategory != null && SelectedCategory != newlySelectedCategory)
-        {
-            SelectedItem = null;
-        }
-
-        SelectedCategory = newlySelectedCategory;
-        foreach (var category in ShopCategories)
-        {
-            ShopCategoryToUIMap[category].SetIsSelected(category == SelectedCategory);
-        }
-
-        RefreshShopUI_Items();
     }
 
     void OnItemSelected(ShopItem newlySelectedItem)
     {
+        // Update the selected item and refresh the UI
         SelectedItem = newlySelectedItem;
-        foreach (var kvp in ShopItemToUIMap)
+        foreach (var kvp in InventoryItemToUIMap)
         {
             var item = kvp.Key;
             var itemUI = kvp.Value;
@@ -170,24 +79,15 @@ public class InventoryUI : MonoBehaviour
             itemUI.SetIsSelected(item == SelectedItem);
         }
 
-        RefreshShopUI_Common();
+        RefreshInventoryUI_Common();
     }
-    
+
     public void OnClickedEquip()
     {
-        if (SelectedItem != null)
+        // Equip the selected item and refresh the UI
+        if (SelectedItem != null && CurrentPurchaser.EquipItem(SelectedItem))
         {
-            InventoryManager.Instance.EquipItem(SelectedItem);
-            RefreshShopUI_Items();
+            RefreshInventoryUI();
         }
-
-        RefreshShopUI_Common();
-        RefreshShopUI_Items();
-    }
-
-    public void OnClickedExit()
-    {
-
     }
 }
-
