@@ -1386,6 +1386,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputManager: {fileID: 1869847491934588382}
   thrustMultiplier: 125
+  overdriveSpeed: 0
   brakeMultiplier: 1
   pitchMultiplier: 0.05
   yawMultiplier: 0.05
@@ -1404,7 +1405,13 @@ MonoBehaviour:
   health: 2000
   deathVfx: {fileID: 725748389856807714, guid: 4bda94453d2ca7444a0fff05b2d425f5, type: 3}
   engineSound: {fileID: 5444962509898330667}
+  boosterSound: {fileID: 0}
+  boosterActivation: {fileID: 0}
+  boosterDeactivation: {fileID: 0}
+  boosterVfx: {fileID: 0}
   team: 0
+  lapNumber: 0
+  chekpointIndex: 0
 --- !u!54 &3979525753080017345
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -23271,6 +23278,8 @@ MonoBehaviour:
   neck: {fileID: 5379041635512066285}
   throttle: {fileID: 6573796033447681004}
   throttleMax: {fileID: 3541093831965289462}
+  overdrive: {fileID: 0}
+  overdriveNeck: {fileID: 0}
   SteeringSensitivity: 0.35
   ThrustSensitivity: 0.55
 --- !u!1 &8955151228830986852 stripped

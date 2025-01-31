@@ -13,6 +13,10 @@ public class SolarSystem : MonoBehaviour
     [SerializeField] private float radiusDistance;
     [SerializeField] private int minPlanets;
     [SerializeField] private int maxPlanets;
+    [SerializeField] private int minPlanetRadius;
+    [SerializeField] private int maxPlanetRadius;
+    [SerializeField] private int minPlanetResolution;
+    [SerializeField] private int maxPlanetResolution;
     [SerializeField] private float planetProtectorGenerationChance;
     
     [HideInInspector]
@@ -57,11 +61,11 @@ public class SolarSystem : MonoBehaviour
         Random.InitState(cryptoSeed);
         
         Planet planetScript = currentPlanet.GetComponentInChildren<Planet>();
-        planetScript.resolution = Random.Range(50, 151);
+        planetScript.resolution = Random.Range(minPlanetResolution, maxPlanetResolution);
         planetScript.origin = position;
 
         ShapeSettings shapeSettings = ScriptableObject.CreateInstance<ShapeSettings>();
-        shapeSettings.planetRadius = Random.Range(75f, 100f); // Set a random planet radius
+        shapeSettings.planetRadius = Random.Range(minPlanetRadius, maxPlanetRadius); // Set a random planet radius
         shapeSettings.noiseLayers = GenerateRandomNoiseLayers(); // Generate random noise layers
         planetScript.shapeSettings = shapeSettings;
 
@@ -71,6 +75,8 @@ public class SolarSystem : MonoBehaviour
         planetScript.colourSettings = colourSettings;
 
         planetScript.GeneratePlanet(planet_id);
+        
+        currentPlanet.GetComponentInChildren<PlanetGravity>().Setup(shapeSettings.planetRadius, (shapeSettings.planetRadius - minPlanetRadius) / (maxPlanetRadius - minPlanetRadius));
 
         planetQueue.Enqueue(new Tuple<GameObject, float>(currentPlanet, shapeSettings.planetRadius));
     }

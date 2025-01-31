@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Planet : MonoBehaviour
 {
+    [SerializeField] private SphereCollider gravityCollider;
+    
     [HideInInspector]
     public int planet_id;
     [HideInInspector]

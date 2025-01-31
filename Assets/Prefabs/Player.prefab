@@ -3263,6 +3263,8 @@ MonoBehaviour:
   _headMount: {fileID: 7642133300888761199}
   _XROrigin: {fileID: 2492797561795125341}
   spaceship: {fileID: 0}
+  spaceshipController: {fileID: 0}
+  cameraOffset: {fileID: 0}
   _leftHandMoveAction:
     m_UseReference: 1
     m_Action:

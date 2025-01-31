@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class SC_PlanetGravity : MonoBehaviour
 {
-    PlanetGenerator planetGenerator;
+    /*PlanetGenerator planetGenerator;
     Queue<Tuple<GameObject, float>> planetQueue;
     GameObject closestPlanet;
     const float planetGravityDistance = 20f;
@@ -67,5 +67,5 @@ public class SC_PlanetGravity : MonoBehaviour
 
         planet = closestPlanet.transform;
         return closestPlanet;
-    }
+    }*/
 }

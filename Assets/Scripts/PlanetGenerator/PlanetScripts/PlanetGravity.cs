@@ -1,46 +1,88 @@
+using System;
+using System.Collections;
 using UnityEngine;
 
 public class PlanetGravity : MonoBehaviour
 {
-    public float gravityStrength = 9.81f;
-    public float activationDistance = 10f; // Distance within which gravity is activated
-    private Transform player;
-    private Rigidbody playerRigidbody;
+    [SerializeField] private SphereCollider gravityCollider;
+    [SerializeField] private float minGravity;
+    [SerializeField] private float maxGravity;
+    
+    private float gravityStrength = 9.81f;
 
-    void OnTriggerEnter(Collider other)
+    private Rigidbody _spaceshipRb;
+    private PlayerController _playerController;
+    private WorldMover _worldMover;
+    
+    private Coroutine _coroutine;
+    
+    public void Setup(float planetRadius, float gravityStrength)
     {
-        if (other.CompareTag("Player"))
-        {
-            player = other.transform;
-            playerRigidbody = other.GetComponent<Rigidbody>();
-            playerRigidbody.useGravity = false; // Disable default gravity
-        }
+        this.gravityStrength = gravityStrength * maxGravity + (1 - gravityStrength) * minGravity;
+        gravityCollider.radius = planetRadius * 1.6f;
     }
 
-    void OnTriggerExit(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
-        {
-            playerRigidbody.useGravity = true; // Re-enable default gravity
-            player = null;
-            playerRigidbody = null;
-        }
+        var rb = other.attachedRigidbody;
+        if (!rb.CompareTag("Player"))
+            return;
+        
+        _spaceshipRb = rb;
+        _worldMover = rb.GetComponent<WorldMover>();
     }
 
-    void FixedUpdate()
+    private void OnTriggerExit(Collider other)
     {
-        if (player != null && playerRigidbody != null)
-        {
-            float distanceToPlanet = Vector3.Distance(transform.position, player.position);
-            if (distanceToPlanet <= activationDistance)
-            {
-                Vector3 directionToPlanet = (transform.position - player.position).normalized;
-                playerRigidbody.AddForce(directionToPlanet * gravityStrength, ForceMode.Acceleration);
+        var rb = other.attachedRigidbody;
+        if (!rb.CompareTag("Player"))
+            return;
+        
+        _spaceshipRb.transform.SetParent(null);
+        _worldMover.enabled = true;
+        
+        _spaceshipRb = null;
+        _playerController = null;
+        _worldMover = null;
+    }
 
-                // Rotate the player to align with the planet's surface
-                Quaternion targetRotation = Quaternion.FromToRotation(player.up, -directionToPlanet) * player.rotation;
-                playerRigidbody.MoveRotation(Quaternion.Slerp(player.rotation, targetRotation, Time.fixedDeltaTime * 5f));
-            }
-        }
+    private void OnCollisionEnter(Collision other)
+    {
+        var rb = other.rigidbody;
+        if (!rb.CompareTag("Player"))
+            return;
+        
+        _playerController = rb.gameObject.GetComponentInChildren<PlayerController>();
+        _worldMover.enabled = false;
+        
+        _spaceshipRb.transform.SetParent(transform);
+        
+        if(_coroutine != null)
+            StopCoroutine(_coroutine);
+    }
+
+    private void FixedUpdate()
+    {
+        ApplyGravityToShip();
+        ApplyGravityToPlayer();
+    }
+
+    private void ApplyGravityToShip()
+    {
+        if (_spaceshipRb == null)
+            return;
+        
+        var dir = _spaceshipRb.transform.position - transform.position;
+        dir.Normalize();
+        
+        _spaceshipRb.AddForce(-dir * maxGravity, ForceMode.Acceleration);
+    }
+
+    private void ApplyGravityToPlayer()
+    {
+        if (_playerController == null)
+            return;
+        
+        
     }
 }

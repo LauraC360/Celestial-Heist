@@ -6,8 +6,8 @@ using Random = UnityEngine.Random;
 
 public class CollectiblesGenerator : MonoBehaviour
 {
-
-    // PlanetGenerator planetGenerator;
+    [SerializeField] private SolarSystem solarSystem;
+    
     [HideInInspector]
     public Queue<Tuple<GameObject, float>> planetQueue;
 
@@ -15,21 +15,17 @@ public class CollectiblesGenerator : MonoBehaviour
 
     const int MIN_COLLECTIBLES_PER_TYPE = 5;
     const int MAX_COLLECTIBLES_PER_TYPE = 10;
-
-    // void Start()
-    // {
-    //     // planetGenerator = GameObject.Find("PlanetGenerator").GetComponent<PlanetGenerator>();
-    //     planetQueue = planetGenerator.planetQueue;
-    // }
-
+    
     public void GenerateCollectibles()
     {
+        planetQueue = solarSystem.planetQueue;
+        
         int id=0;
         foreach (Tuple<GameObject, float> planet in planetQueue)
         {
             GameObject currentPlanet = planet.Item1;
             float planetRadius = planet.Item2;
-            Planet planetScript = currentPlanet.GetComponent<Planet>();
+            Planet planetScript = currentPlanet.GetComponentInChildren<Planet>();
 
             for (int i = 0; i < Random.Range(MIN_COLLECTIBLES_PER_TYPE, MAX_COLLECTIBLES_PER_TYPE); i++)
             {

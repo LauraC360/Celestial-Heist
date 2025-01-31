@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
         
         var movement = spaceship.rotation * new Vector3(moveDir.z, 0, moveDir.x) * moveSpeed * Time.fixedDeltaTime;
         
-        Move(movement);
+        //Move(movement);
 
         var turnInput = _rightHandTurnAction.action?.ReadValue<Vector2>() ?? Vector2.zero;
 
