@@ -1,4 +1,5 @@
 using System.Linq;
+using DG.Tweening;
 using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -11,6 +12,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform _headMount;
     [SerializeField] private XROrigin _XROrigin;
     [SerializeField] private Transform spaceship;
+    [SerializeField] private SpaceshipController spaceshipController;
+    [SerializeField] private Transform cameraOffset;
 
     [SerializeField] private InputActionProperty _leftHandMoveAction =
         new InputActionProperty(new InputAction("Left Hand Move", expectedControlType: "Vector2"));
@@ -23,7 +26,10 @@ public class PlayerController : MonoBehaviour
     private Collider[] _colliders = new Collider[64];
 
     private int _layerMask;
-    
+
+    private Vector3 _initialCameraOffset;
+    private bool _overdrive = false;
+
     private void Start()
     {
         _leftHandMoveAction.EnableDirectAction();
@@ -47,6 +53,8 @@ public class PlayerController : MonoBehaviour
         var turn = turnInput.magnitude * Mathf.Sign(turnInput.x);
         
         _XROrigin.RotateAroundCameraPosition(transform.up, turn * turnSpeed * Time.fixedDeltaTime);
+
+        ShakeToOverdrive();
     }
 
     private Vector3 GetMoveInput()
@@ -77,5 +85,23 @@ public class PlayerController : MonoBehaviour
         transform.position = target;
 
         return true;
+    }
+
+    private void ShakeToOverdrive()
+    {
+        if (!_overdrive && spaceshipController.OverdriveValue > 0)
+        {
+            _initialCameraOffset = cameraOffset.localPosition;
+            
+            _overdrive = true;
+            cameraOffset.DOShakePosition(0.1f, 0.002f, 100).SetRelative(true).SetLoops(-1, LoopType.Restart);
+        }
+        else if (_overdrive && spaceshipController.OverdriveValue <= 0)
+        {
+            _overdrive = false;
+            cameraOffset.DOKill();
+
+            cameraOffset.localPosition = _initialCameraOffset;
+        }
     }
 }

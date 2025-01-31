@@ -16,6 +16,8 @@ public class YokeInput : InputManager
     [SerializeField] private Transform neck;
     [SerializeField] private XRGrabInteractable throttle;
     [SerializeField] private Transform throttleMax;
+    [SerializeField] private XRGrabInteractable overdrive;
+    [SerializeField] private Transform overdriveNeck;
     [SerializeField] private float SteeringSensitivity = 1f;
     [SerializeField] private float ThrustSensitivity = 1f;
 
@@ -44,6 +46,16 @@ public class YokeInput : InputManager
     private Vector3 _throttleGrabbedPosition;
     private Vector3 _throttleMinPosition;
     private Vector3 _throttleMaxPosition;
+    
+    private bool _overdriveGrabbed = false;
+    private Transform _overdriveGrabber;
+    private Vector3 _overdriveGrabPosition;
+    private float _overdriveInitialAngle;
+    
+    private const float OverdriveMin = -45f;
+    private const float OverdriveMax = 45f;
+    private const float OverdriveSensitivity = 315f;
+    private const float OverdriveSnapback = 180;
 
     private Vector3 _leftHandRelativePosition;
     private Vector3 _rightHandRelativePosition;
@@ -108,22 +120,26 @@ public class YokeInput : InputManager
         {
             _rightGrabbed = false;
         });
-    }
+        
+        overdrive.selectEntered.AddListener((e) =>
+        {
+            if (_overdriveGrabbed)
+                return;
 
-    private IEnumerator OnLeftGrabExit()
-    {
-        for(int i = 0; i < 5; i++)
-            yield return new WaitForFixedUpdate();
-        
-        _leftGrabbed = false;
-    }
-    
-    private IEnumerator OnRightGrabExit()
-    {
-        for(int i = 0; i < 5; i++)
-            yield return new WaitForFixedUpdate();
-        
-        _rightGrabbed = false;
+            _overdriveGrabbed = true;
+            _overdriveGrabber = e.interactorObject.transform.parent;
+            _overdriveGrabPosition = _overdriveGrabber == leftController
+                ? _leftHandRelativePosition
+                : _rightHandRelativePosition;
+            _overdriveInitialAngle = overdriveNeck.localEulerAngles.y;
+            if (_overdriveInitialAngle > 180)
+                _overdriveInitialAngle -= 360;
+        });
+            
+        overdrive.selectExited.AddListener((e) =>
+        {
+            _overdriveGrabbed = false;
+        });
     }
 
     private float Angle(Vector2 from, Vector2 to)
@@ -139,6 +155,8 @@ public class YokeInput : InputManager
         _rightHandRelativePosition = rightController.localPosition.ConvertVectorBetweenBases(xrOrigin, transform);
         
         HandleThrottle();
+
+        HandleOverdrive();
         
         if (!_leftGrabbed || !_rightGrabbed)
         {
@@ -215,6 +233,30 @@ public class YokeInput : InputManager
             _throttleMinPosition.z);
     }
 
+    private void HandleOverdrive()
+    {
+        var overdriveAngle = overdriveNeck.localEulerAngles.y;
+        if(overdriveAngle > 180)
+            overdriveAngle -= 360;
+        var overdriveMovement = 0f;
+        var newAngle = 0f;
+        if (!_overdriveGrabbed)
+        {
+            overdriveMovement = OverdriveSnapback * Time.deltaTime * Mathf.Sign(overdriveAngle);
+            newAngle = overdriveAngle + overdriveMovement;
+        }
+        else
+        {
+            var diff = (_overdriveGrabber == leftController ? _leftHandRelativePosition : _rightHandRelativePosition) - _overdriveGrabPosition;
+            overdriveMovement = -diff.x * OverdriveSensitivity;
+            newAngle = _overdriveInitialAngle + overdriveMovement;
+        }
+        
+        newAngle = Mathf.Clamp(newAngle, OverdriveMin, OverdriveMax);
+        
+        overdriveNeck.localEulerAngles = new Vector3(0, newAngle, 0);
+    }
+
     public override float Roll()
     {
         return -neckRoll / -45f;
@@ -227,7 +269,7 @@ public class YokeInput : InputManager
 
     public override float Pitch()
     {
-        return (neck.localPosition.x - _neckPosition.x) / -0.02f;
+        return (neck.localPosition.x - _neckPosition.x) / 0.02f;
     }
 
     public override float Thrust()
@@ -243,5 +285,13 @@ public class YokeInput : InputManager
     public override bool Fire()
     {
         return rightInputs.activateAction.action.ReadValue<float>() > 0.5f;
+    }
+
+    public override bool Overdrive()
+    {
+        var angle = overdriveNeck.localEulerAngles.y;
+        if (angle > 180)
+            angle -= 360;
+        return angle < OverdriveMin / 2;
     }
 }
